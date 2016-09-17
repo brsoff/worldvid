@@ -1,0 +1,245 @@
+{
+  "countries":
+  [
+    {
+      "regionCode": "AU",
+      "name": "Australia"
+    },
+    {
+      "regionCode": "MA",
+      "name": "Morocco"
+    },
+    {
+      "regionCode": "BH",
+      "name": "Bahrain"
+    },
+    {
+      "regionCode": "ES",
+      "name": "Spain"
+    },
+    {
+      "regionCode": "KR",
+      "name": "South Korea"
+    },
+    {
+      "regionCode": "QA",
+      "name": "Qatar"
+    },
+    {
+      "regionCode": "SA",
+      "name": "Saudi Arabia"
+    },
+    {
+      "regionCode": "TW",
+      "name": "Taiwan"
+    },
+    {
+      "regionCode": "PH",
+      "name": "Philippines"
+    },
+    {
+      "regionCode": "NO",
+      "name": "Norway"
+    },
+    {
+      "regionCode": "YE",
+      "name": "Yemen"
+    },
+    {
+      "regionCode": "US",
+      "name": "United States"
+    },
+    {
+      "regionCode": "SN",
+      "name": "Senegal"
+    },
+    {
+      "regionCode": "FI",
+      "name": "Finland"
+    },
+    {
+      "regionCode": "IL",
+      "name": "Israel"
+    },
+    {
+      "regionCode": "SK",
+      "name": "Slovakia"
+    },
+    {
+      "regionCode": "KW",
+      "name": "Kuwait"
+    },
+    {
+      "regionCode": "RO",
+      "name": "Romania"
+    },
+    {
+      "regionCode": "PL",
+      "name": "Poland"
+    },
+    {
+      "regionCode": "BR",
+      "name": "Brazil"
+    },
+    {
+      "regionCode": "IN",
+      "name": "India"
+    },
+    {
+      "regionCode": "CH",
+      "name": "Switzerland"
+    },
+    {
+      "regionCode": "AE",
+      "name": "United Arab Emirates"
+    },
+    {
+      "regionCode": "PE",
+      "name": "Peru"
+    },
+    {
+      "regionCode": "ID",
+      "name": "Indonesia"
+    },
+    {
+      "regionCode": "HU",
+      "name": "Hungary"
+    },
+    {
+      "regionCode": "GR",
+      "name": "Greece"
+    },
+    {
+      "regionCode": "CA",
+      "name": "Canada"
+    },
+    {
+      "regionCode": "NL",
+      "name": "Netherlands"
+    },
+    {
+      "regionCode": "SE",
+      "name": "Sweden"
+    },
+    {
+      "regionCode": "BE",
+      "name": "Belgium"
+    },
+    {
+      "regionCode": "SG",
+      "name": "Singapore"
+    },
+    {
+      "regionCode": "OM",
+      "name": "Oman"
+    },
+    {
+      "regionCode": "DK",
+      "name": "Denmark"
+    },
+    {
+      "regionCode": "ZA",
+      "name": "South Africa"
+    },
+    {
+      "regionCode": "UG",
+      "name": "Uganda"
+    },
+    {
+      "regionCode": "JO",
+      "name": "Jordan"
+    },
+    {
+      "regionCode": "CL",
+      "name": "Chile"
+    },
+    {
+      "regionCode": "TR",
+      "name": "Turkey"
+    },
+    {
+      "regionCode": "GB",
+      "name": "United Kingdom"
+    },
+    {
+      "regionCode": "EG",
+      "name": "Egypt"
+    },
+    {
+      "regionCode": "MY",
+      "name": "Malaysia"
+    },
+    {
+      "regionCode": "UA",
+      "name": "Ukraine"
+    },
+    {
+      "regionCode": "IT",
+      "name": "Italy"
+    },
+    {
+      "regionCode": "JP",
+      "name": "Japan"
+    },
+    {
+      "regionCode": "KE",
+      "name": "Kenya"
+    },
+    {
+      "regionCode": "PT",
+      "name": "Portugal"
+    },
+    {
+      "regionCode": "TN",
+      "name": "Tunisia"
+    },
+    {
+      "regionCode": "CO",
+      "name": "Colombia"
+    },
+    {
+      "regionCode": "GH",
+      "name": "Ghana"
+    },
+    {
+      "regionCode": "AR",
+      "name": "Argentina"
+    },
+    {
+      "regionCode": "IE",
+      "name": "Ireland"
+    },
+    {
+      "regionCode": "HK",
+      "name": "Hong Kong"
+    },
+    {
+      "regionCode": "RU",
+      "name": "Russia"
+    },
+    {
+      "regionCode": "CZ",
+      "name": "Czech Republic"
+    },
+    {
+      "regionCode": "FR",
+      "name": "France"
+    },
+    {
+      "regionCode": "AT",
+      "name": "Austria"
+    },
+    {
+      "regionCode": "DE",
+      "name": "Germany"
+    },
+    {
+      "regionCode": "DZ",
+      "name": "Algeria"
+    },
+    {
+      "regionCode": "MX",
+      "name": "Mexico"
+    }
+  ]
+}

@@ -19,8 +19,10 @@ defmodule Worldvid.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Worldvid do
-  #   pipe_through :api
-  # end
+  scope "/api", Worldvid do
+    pipe_through :api
+
+    get "/countries", CountryController, :index
+    get "/countries/:id", CountryController, :show
+  end
 end
