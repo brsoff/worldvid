@@ -6,7 +6,8 @@ defmodule Worldvid.CountryController do
   alias Worldvid.Repo
 
   def index(conn, _params) do
-    countries = Repo.all Country
+    query = from c in Country, order_by: c.name
+    countries = Repo.all query
     render conn, "index.json", countries: countries
   end
 
