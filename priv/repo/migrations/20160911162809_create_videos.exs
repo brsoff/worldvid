@@ -8,6 +8,7 @@ defmodule Worldvid.Repo.Migrations.CreateVideos do
       add :youtube_id, :string
       add :thumb_url, :string
       add :category, :string
+      add :view_count, :integer
 
       timestamps
     end

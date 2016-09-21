@@ -17,14 +17,6 @@ alias Worldvid.Video
 alias Worldvid.CountryVideo
 alias Worldvid.Repo
 
-api_key = System.get_env("YOUTUBE_API_KEY")
-base_api_url = "https://www.googleapis.com/youtube/v3/videos?key=" <> api_key
-base_params = Enum.join ["&part=id,snippet", "chart=mostPopular", "maxResults=10"], "&"
-base_url = base_api_url <> base_params
-
-countries = Repo.all Country
-target_categories = ["1", "10", "17", "23", "25"]
-
 defmodule Seeder do
   @categories File.read("fixtures/categories.json")
               |> elem(1)
@@ -35,13 +27,17 @@ defmodule Seeder do
     @categories
   end
 
-  def seed_videos country_id, videos, top \\ false do
-    Enum.each videos, fn data ->
-      video = find_video data["id"]
+  def seed_videos country_id, videos do
+    videos
+    |> Stream.with_index
+    |> Enum.each(fn data ->
+      position = elem(data, 1) + 1
+      video_data = elem(data, 0)
+      video = find_video video_data["id"]
 
       video =
         if video === nil do
-          insert_video data
+          insert_video video_data
         else
           video
         end
@@ -49,9 +45,9 @@ defmodule Seeder do
       country_video = find_country_video country_id, video.id
 
       if country_video === nil do
-        insert_country_video country_id, video.id, top
+        insert_country_video country_id, video.id, position
       end
-    end
+    end)
   end
 
   def find_video youtube_id do
@@ -71,7 +67,8 @@ defmodule Seeder do
       description: snippet["description"],
       youtube_id: data["id"],
       thumb_url: snippet["thumbnails"]["standard"]["url"],
-      category: category
+      category: category,
+      view_count: parse_view_count(data["statistics"]["viewCount"])
     }
     |> Repo.insert!
   end
@@ -85,11 +82,11 @@ defmodule Seeder do
     Repo.one query
   end
 
-  def insert_country_video country_id, video_id, top do
+  def insert_country_video country_id, video_id, position do
     %CountryVideo{
       country_id: country_id,
       video_id: video_id,
-      top: top
+      position: position
     }
     |> Repo.insert!
   end
@@ -102,33 +99,36 @@ defmodule Seeder do
     cat["name"]
   end
 
-  def fetch_videos url do
-    response = HTTPotion.get url
-    Poison.decode!(response.body)["items"]
+  defp parse_view_count(view_count) do
+    if view_count !== nil do
+      elem(Integer.parse(view_count), 0)
+    else
+      nil
+    end
   end
 end
 
-# get general top videos
+api_key = System.get_env("YOUTUBE_API_KEY")
+base_api_url = "https://www.googleapis.com/youtube/v3/videos?key=" <> api_key
+
+full_url = Enum.join([
+  base_api_url,
+  "part=id,snippet,statistics",
+  "chart=mostPopular",
+  "maxResults=50"
+  ], "&")
+
+countries = Repo.all Country
+
 Enum.each countries, fn country ->
   region_code = country.region_code
-  url = base_url <> "&regionCode=" <> region_code
-  videos = Seeder.fetch_videos url
+  url = full_url <> "&regionCode=" <> region_code
+  response = HTTPotion.get url
+  videos = Poison.decode!(response.body)["items"]
 
   if videos === nil do
-    Mix.shell.info("Error: No general data received for country " <> region_code)
+    Mix.shell.info("Error: No data received for country " <> region_code)
   else
-    Seeder.seed_videos country.id, videos, true
-  end
-
-  # get top videos by category
-  Enum.each target_categories, fn id ->
-    url = url <> "&videoCategoryId=" <> id
-    videos = Seeder.fetch_videos url
-
-    if videos === nil do
-      Mix.shell.info("Error: No category data (" <> id <> ") received for country " <> region_code)
-    else
-      Seeder.seed_videos country.id, videos
-    end
+    Seeder.seed_videos country.id, videos
   end
 end

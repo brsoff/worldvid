@@ -26,7 +26,8 @@ defmodule Worldvid.CountryView do
       youtubeId: video.youtube_id,
       thumbUrl: video.thumb_url,
       category: video.category,
-      top: cv.top
+      view_count: video.view_count,
+      position: cv.position
     }
   end
 

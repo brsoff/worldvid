@@ -5,7 +5,7 @@ defmodule Worldvid.Repo.Migrations.CreateCountryVideos do
     create table(:countries_videos) do
       add :video_id, :integer
       add :country_id, :integer
-      add :top, :boolean, default: false
+      add :position, :integer
 
       timestamps
     end

@@ -4,7 +4,7 @@ defmodule Worldvid.CountryVideo do
   schema "countries_videos" do
     belongs_to :country, Worldvid.Country
     belongs_to :video, Worldvid.Video
-    field :top, :boolean
+    field :position, :integer
 
     timestamps
   end

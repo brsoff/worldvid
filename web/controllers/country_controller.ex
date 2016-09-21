@@ -15,6 +15,7 @@ defmodule Worldvid.CountryController do
       from v in Video,
       join: cv in assoc(v, :countries_videos),
       where: cv.country_id == ^params["id"],
+      order_by: [asc: cv.position],
       preload: [countries_videos: cv]
 
     videos = Repo.all query
