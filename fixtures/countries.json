@@ -240,6 +240,126 @@
     {
       "regionCode": "MX",
       "name": "Mexico"
+    },
+    {
+      "regionCode": "EE",
+      "name": "Estonia"
+    },
+    {
+      "regionCode": "KZ",
+      "name": "Kazakhstan"
+    },
+    {
+      "regionCode": "PK",
+      "name": "Pakistan"
+    },
+    {
+      "regionCode": "LK",
+      "name": "Sri Lanka"
+    },
+    {
+      "regionCode": "GE",
+      "name": "Georgia"
+    },
+    {
+      "regionCode": "AZ",
+      "name": "Azerbaijan"
+    },
+    {
+      "regionCode": "LV",
+      "name": "Latvia"
+    },
+    {
+      "regionCode": "LB",
+      "name": "Lebanon"
+    },
+    {
+      "regionCode": "BY",
+      "name": "Belarus"
+    },
+    {
+      "regionCode": "LY",
+      "name": "Libya"
+    },
+    {
+      "regionCode": "TZ",
+      "name": "Tanzania"
+    },
+    {
+      "regionCode": "LT",
+      "name": "Lithuania"
+    },
+    {
+      "regionCode": "PR",
+      "name": "Puerto Rico"
+    },
+    {
+      "regionCode": "TH",
+      "name": "Thailand"
+    },
+    {
+      "regionCode": "BA",
+      "name": "Bosnia and Herzegovina"
+    },
+    {
+      "regionCode": "LU",
+      "name": "Luxembourg"
+    },
+    {
+      "regionCode": "IS",
+      "name": "Iceland"
+    },
+    {
+      "regionCode": "MK",
+      "name": "Macedonia"
+    },
+    {
+      "regionCode": "BG",
+      "name": "Bulgaria"
+    },
+    {
+      "regionCode": "IQ",
+      "name": "Iraq"
+    },
+    {
+      "regionCode": "ME",
+      "name": "Montenegro"
+    },
+    {
+      "regionCode": "RS",
+      "name": "Serbia"
+    },
+    {
+      "regionCode": "HR",
+      "name": "Croatia"
+    },
+    {
+      "regionCode": "NP",
+      "name": "Nepal"
+    },
+    {
+      "regionCode": "VN",
+      "name": "Vietnam"
+    },
+    {
+      "regionCode": "JM",
+      "name": "Jamaica"
+    },
+    {
+      "regionCode": "NZ",
+      "name": "New Zealand"
+    },
+    {
+      "regionCode": "SI",
+      "name": "Slovenia"
+    },
+    {
+      "regionCode": "ZW",
+      "name": "Zimbabwe"
+    },
+    {
+      "regionCode": "NG",
+      "name": "Nigeria"
     }
   ]
 }
