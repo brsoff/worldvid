@@ -5,8 +5,8 @@ defmodule Worldvid.CountryView do
     %{countries: Enum.map(countries, &country_json/1)}
   end
 
-  def render("show.json", %{country: country}) do
-    %{country: show_json country }
+  def render("show.json", %{videos: videos}) do
+    %{videos: Enum.map(videos, &video_json/1)}
   end
 
   def country_json country do
@@ -18,12 +18,15 @@ defmodule Worldvid.CountryView do
   end
 
   def video_json video do
+    [cv] = Map.get(video, :countries_videos)
+
     %{
       id: video.id,
       name: video.title,
       youtubeId: video.youtube_id,
       thumbUrl: video.thumb_url,
-      category: video.category
+      category: video.category,
+      top: cv.top
     }
   end
 

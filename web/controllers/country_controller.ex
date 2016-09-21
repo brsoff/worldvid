@@ -1,8 +1,8 @@
 defmodule Worldvid.CountryController do
-  require IEx
   use Worldvid.Web, :controller
 
   alias Worldvid.Country
+  alias Worldvid.Video
   alias Worldvid.Repo
 
   def index(conn, _params) do
@@ -12,12 +12,13 @@ defmodule Worldvid.CountryController do
 
   def show(conn, params) do
     query =
-      from c in Country,
-      where: c.id == ^params["id"],
-      preload: :videos
+      from v in Video,
+      join: cv in assoc(v, :countries_videos),
+      where: cv.country_id == ^params["id"],
+      preload: [countries_videos: cv]
 
-    [country] = Repo.all query
+    videos = Repo.all query
 
-    render conn, "show.json", country: country
+    render conn, "show.json", videos: videos
   end
 end
