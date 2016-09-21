@@ -23,6 +23,6 @@ defmodule Worldvid.Router do
     pipe_through :api
 
     get "/countries", CountryController, :index
-    get "/countries/:id", CountryController, :show
+    get "/countries/:id/videos", CountryController, :show
   end
 end
