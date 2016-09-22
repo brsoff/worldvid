@@ -10,7 +10,9 @@
                     :videos ()
                     :selected-country ""
                     :theater-open false
-                    :current-video {}}))
+                    :current-video {}
+                    :fetching false
+                    :options-open false}))
 
 (defn update-state [key, data]
   (swap! state assoc key data))
@@ -24,9 +26,11 @@
                                 (parse-response % "countries"))}))
 
 (defn populate-videos [country-id]
+  (update-state :fetching true)
   (GET (str "/api/countries/" country-id "/videos") 
-       {:handler #(update-state :videos 
-                                (parse-response % "videos"))}))
+       {:handler #(do
+                    (update-state :fetching false)
+                    (update-state :videos (parse-response % "videos")))}))
 
 (defn embed-url [id]
   (str "https://youtube.com/embed/" id))
@@ -39,15 +43,32 @@
     (update-state :selected-country id)
     (populate-videos id)))
 
+(defn options-window []
+  [:div {:class (if (get @state :options-open)
+                   "options-window open"
+                   "options-window")}
+   [:a {:href "#" 
+        :class "close" 
+        :on-click #(update-state :options-open false)}
+    "Close"]])
+
+(defn options []
+  [:div {:class "options-container"}
+   [:a {:on-click #(update-state :options-open true)
+        :href "#"} "Options"]
+   [options-window]])
+
 (defn menu []
   [:div {:class "menu"}
    [:div {:class "menu-inner"}
-    [:select 
+    [options]
+    [:div {:class "select-container"}
+     [:select 
      {:value (get @state :selected-country)
       :on-change on-country-select}
      [:option {:value ""} "Select country..."]
     (for [c (get @state :countries)]
-      ^{:key (get c :id)} [country c])]]])
+      ^{:key (get c :id)} [country c])]]]])
 
 (defn img-src-for [url]
   (if (nil? url) fixtures/default-thumb-url url))                                                 
@@ -78,21 +99,27 @@
          {:src (img-src-for thumbUrl)
           :on-click #(play-video v)}]]
     [:a {:href "#" :on-click #(play-video v)}
-     [:h4 (str "[" category "] " name)]]]))
+     [:h4 name]]]))
+
+(defn loading []
+  [:div {:class "loading-container"} 
+   [:i {:class "material-icons md-dark loading"} "autorenew"]])
 
 (defn videos []
+  (if (get @state :fetching)
+   [loading]
    (let [video-cats 
-         (sort-by 
-           #(count (second %)) 
-           #(> %1 %2)
-           (group-by :category (get @state :videos)))]
+    (sort-by 
+      #(count (second %)) 
+      #(> %1 %2)
+      (group-by :category (get @state :videos)))]
     [:div {:class "videos"}
      (for [vc video-cats]
        (let [cat-name (first vc)]
          ^{:key cat-name} [:div {:class "video-category"} 
-                  [:h3 cat-name] 
+                  [:h3 (str cat-name " (" (count (second vc)) ")")] 
                   (for [vids (sort-by :position (second vc))] 
-                    ^{:key (get vids :id)} [video vids])]))]))
+                    ^{:key (get vids :id)} [video vids])]))])))
 
 (defn app []
   (populate-countries)
