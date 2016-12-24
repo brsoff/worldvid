@@ -28,7 +28,3 @@ mix ecto.reset
 This will drop, create and migrate the database, then perform the seed task.
 
 The seed task will grab the live data from YouTube and takes a minute or so to finish.
-
-### Start Clojurescript
-
-`./worldvid-cljs/scripts/watch`
