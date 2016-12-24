@@ -17,7 +17,7 @@ alias Worldvid.Video
 alias Worldvid.CountryVideo
 alias Worldvid.Repo
 
-defmodule Seeder do
+defmodule VideosSeeder do
   @categories File.read("fixtures/categories.json")
               |> elem(1)
               |> Poison.decode!
@@ -108,6 +108,33 @@ defmodule Seeder do
   end
 end
 
+defmodule CountriesSeeder do
+  def seed do
+    Mix.shell.info "Seeding countries..."
+
+    countries = File.read("fixtures/countries.json")
+                |> elem(1)
+                |> Poison.decode!
+                |> Map.get("countries")
+
+    start countries
+  end
+
+  defp start countries do
+    Enum.each countries, fn country ->
+      Mix.shell.info("Seeding " <> country["name"])
+
+      %Worldvid.Country{
+        name: country["name"],
+        region_code: country["regionCode"]
+      }
+      |> Repo.insert!
+    end
+  end
+end
+
+CountriesSeeder.seed
+
 api_key = System.get_env("YOUTUBE_API_KEY")
 base_api_url = "https://www.googleapis.com/youtube/v3/videos?key=" <> api_key
 
@@ -129,6 +156,6 @@ Enum.each countries, fn country ->
   if videos === nil do
     Mix.shell.info("Error: No data received for country " <> region_code)
   else
-    Seeder.seed_videos country.id, videos
+    VideosSeeder.seed_videos country.id, videos
   end
 end
